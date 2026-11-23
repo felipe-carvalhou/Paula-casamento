@@ -116,6 +116,7 @@
     @media (min-width:600px){.places.two{grid-template-columns:1fr 1fr}}
     .place .small{color:var(--gold-dark)}
     .place h3{margin-top:10px;font-size:1.6rem;line-height:1.15}
+    .place .sala{margin-top:6px;font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dark)}
     .place .addr{margin-top:6px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);line-height:1.6}
     .nav-btns{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
     .nav-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border:1px solid var(--ink);border-radius:999px;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;transition:background .2s,color .2s}
@@ -479,14 +480,18 @@
 
       // Horário: preencha só aqui (ex.: '16:00'). Capa, programa, contagem e agenda se ajustam sozinhos.
       // mapa (opcional) = o que é buscado no Maps/Waze; se vazio, usa endereço + cidade
-      cerimonia: { rotulo: 'Cerimônia civil', icone: 'aliancas', nome: 'Cartório Colorado', endereco: 'SPMN, Lote 2, Conjunto B, Loja 102 – Altana Mall, Balão do Colorado', cidade: 'Sobradinho, Brasília - DF', horario: '11:30',
+      cerimonia: { rotulo: 'Cerimônia civil', icone: 'aliancas', nome: 'Cartório Colorado', sala: 'Sala Clássica', endereco: 'SPMN, Lote 2, Conjunto B, Loja 102 – Altana Mall, Balão do Colorado', cidade: 'Sobradinho, Brasília - DF', horario: '11:30',
                    mapa: 'Cartório Colorado, Altana Mall, Balão do Colorado, Brasília - DF' },
-      recepcao:  { rotulo: 'Recepção', icone: 'jantar', nome: 'Churrascaria Sal e Brasa', endereco: 'SHN Quadra 2, Bloco I, Loja 2 – Térreo', cidade: 'Asa Norte, Brasília - DF', horario: '13:00',
+      recepcao:  { rotulo: 'Recepção', icone: 'jantar', nome: 'Churrascaria Sal e Brasa', sala: 'Salão Planalto', endereco: 'SHN Quadra 2, Bloco I, Loja 2 – Térreo', cidade: 'Asa Norte, Brasília - DF', horario: '13:00',
                    mapa: 'Sal e Brasa Churrascaria, SHN Quadra 2 Bloco I, Asa Norte, Brasília - DF' },
 
       // Programação (linha do tempo). Vazio = monta sozinho com cerimônia e recepção.
       // Ícones: aliancas, taca, xicara, camera, jantar, festa, bolo
-      programa: [],
+      programa: [
+        { hora: '11:30', titulo: 'Cerimônia civil', local: 'Cartório Colorado', sala: 'Sala Clássica', icone: 'aliancas' },
+        { hora: '12:00', titulo: 'Fotos', icone: 'camera' },
+        { hora: '13:00', titulo: 'Recepção', local: 'Churrascaria Sal e Brasa', sala: 'Salão Planalto', icone: 'jantar' }
+      ],
 
       // Fotos do pré-wedding: ficam na pasta "fotos". Todas aparecem em Nossa História e a última vira o fundo do final.
       fotos: ['fotos/foto1.jpg', 'fotos/foto2.jpg', 'fotos/foto3.jpg', 'fotos/foto4.jpg'],
@@ -605,7 +610,7 @@
           <div class="txt">
             ${it.hora ? `<p class="hr serif">${hfmt(it.hora)}</p><div class="rule"></div>` : ''}
             <p class="tt">${esc(it.titulo || '')}</p>
-            ${it.local ? `<p class="lc">${esc(it.local)}</p>` : ''}
+            ${it.local ? `<p class="lc">${esc(it.local)}${it.sala ? `<br>${esc(it.sala)}` : ''}</p>` : ''}
           </div>
           <span class="dot"></span>
           <svg class="ic"><use href="#i-${esc(it.icone || 'aliancas')}"/></svg>
@@ -625,6 +630,7 @@
           <div class="place">
             <p class="small">${titulo}${l.horario ? ' · ' + hfmt(l.horario) : ''}</p>
             <h3 class="serif">${esc(l.nome || l.endereco)}</h3>
+            ${l.sala ? `<p class="sala">${esc(l.sala)}</p>` : ''}
             <details class="onde">
               <summary aria-label="Ver endereço de ${esc(l.nome || titulo)}"><svg aria-hidden="true"><use href="#i-pin"/></svg></summary>
               <div class="onde-info">
