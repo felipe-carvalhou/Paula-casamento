@@ -498,8 +498,10 @@
       // Foto principal (fundo da capa). Vazio = capa com o desenho verde oliva.
       fotoCapa: 'fotos/capa.jpg',
       focoCapa: '42% 50%',
+      // Fundo do final. Vazio = usa a última foto da galeria.
+      fotoFinal: 'fotos/final.jpg',
       // Enquadramento do fundo do final: '50% 0%' = topo, '50% 50%' = centro, '50% 100%' = base
-      focoFinal: '52% 50%',
+      focoFinal: '30% 50%',
 
       // Detalhes extras (some se vazio)
       detalhes: [],
@@ -552,7 +554,7 @@
     if (CONFIG.fotos.length) {
       const put = (scene, src, foco) => { scene.querySelectorAll('.fundo,.arte,.lirio-final').forEach(e => e.remove());
         scene.insertAdjacentHTML('afterbegin', `<img class="photo" src="${esc(src)}" alt="" style="object-position:${esc(foco)}"><div class="tint"></div>`); };
-      put($('finalScene'), CONFIG.fotos[CONFIG.fotos.length - 1], CONFIG.focoFinal || '50% 50%');
+      put($('finalScene'), CONFIG.fotoFinal || CONFIG.fotos[CONFIG.fotos.length - 1], CONFIG.focoFinal || '50% 50%');
     }
     if (CONFIG.fotoCapa) {
       document.querySelector('.hero .arte').remove();
