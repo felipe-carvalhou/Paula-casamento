@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Convida&u//Convite//PT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2027-01-07-anderson-paula@convidaeu.com.br
+DTSTAMP:20261123T170500Z
+DTSTART:20270107T143000Z
+DTEND:20270107T183000Z
+SUMMARY:Casamento de Anderson & Paula
+LOCATION:Cartório Colorado\, SPMN\, Lote 2\, Conjunto B\, Loja 102 – Altan
+ a Mall\, Balão do Colorado\, Sobradinho\, Brasília - DF
+DESCRIPTION:Contamos com a sua presença!
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Amanhã é o casamento de Anderson & Paula!
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR
